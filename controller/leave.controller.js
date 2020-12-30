@@ -1,9 +1,9 @@
-const Leave = require("../models/Leave");
-const User = require("../models/User");
+const Leave = require('../models/Leave');
+const User = require('../models/User');
 
 const allLeaves = async (req, res, next) => {
   try {
-    const leaves = await Leave.find().populate("user");
+    const leaves = await Leave.find().populate('user');
     res.json(leaves);
   } catch (err) {
     res.status(500);
@@ -13,7 +13,7 @@ const allLeaves = async (req, res, next) => {
 
 const leaveById = async (req, res, next) => {
   try {
-    const leave = await Leave.findById(req.params.leaveId).populate("user");
+    const leave = await Leave.findById(req.params.leaveId).populate('user');
     res.json(leave);
   } catch (err) {
     console.log(err);
@@ -42,7 +42,7 @@ const addLeave = async (req, res, next) => {
     console.log(user);
     console.log(startDate, endDate, reason, days);
     if (user) {
-      if (days > user.leaveQuota) throw new Error("Leave quota exceeded");
+      if (days > user.leaveQuota) throw new Error('Leave quota exceeded');
       else {
         user.leaveQuota = user.leaveQuota - days;
         const leave = await Leave.create({
@@ -58,7 +58,7 @@ const addLeave = async (req, res, next) => {
         res.status(201).json(leave);
       }
     } else {
-      throw new Error("User not found");
+      throw new Error('User not found');
     }
   } catch (err) {
     console.log(err);
@@ -72,19 +72,19 @@ const updateLeave = async (req, res, next) => {
   try {
     let leave = await Leave.findById(req.params.leaveId).populate('user');
     if (leave) {
-      if (leave.isApproved != null) throw new Error("Leave already processed");
+      if (leave.isApproved != null) throw new Error('Leave already processed');
       if (isApproved) {
         leave.isApproved = isApproved;
         await Leave.updateOne({ _id: leave._id }, leave);
-      }else{
-         const user = leave.user;
-         user.leaveQuota = user.leaveQuota + leave.days;
-         await User.updateOne({ _id: user._id }, user);
-         await Leave.updateOne({ _id: leave._id }, leave);
+      } else {
+        const user = leave.user;
+        user.leaveQuota = user.leaveQuota + leave.days;
+        await User.updateOne({ _id: user._id }, user);
+        await Leave.updateOne({ _id: leave._id }, leave);
       }
-      res.status(200).json({ message: "Leave processed" });
+      res.status(200).json({ message: 'Leave processed' });
     } else {
-      throw new Error("Invalid leave Id");
+      throw new Error('Invalid leave Id');
     }
   } catch (err) {
     console.log(err);

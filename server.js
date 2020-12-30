@@ -1,12 +1,13 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const cors = require("cors");
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const cors = require('cors');
 
 // Routes
-const authRoutes = require("./routes/auth.route");
-const userRoutes = require("./routes/user.route");
-const leaveRoutes = require("./routes/leave.route");
+const authRoutes = require('./routes/auth.route');
+const userRoutes = require('./routes/user.route');
+const leaveRoutes = require('./routes/leave.route');
+const financeRoutes = require('./routes/finance.route');
 
 dotenv.config();
 const app = express();
@@ -14,19 +15,20 @@ const app = express();
 // DB connection
 mongoose.connect(
   process.env.MONGO_URL,
-  { useUnifiedTopology: true, useNewUrlParser: true },
-  () => console.log("Database Connected!")
+  { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true },
+  () => console.log('Database Connected!')
 );
 
 // middlewares
 app.use(cors());
 app.use(express.json());
-app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/users", userRoutes);
-app.use("/api/v1", leaveRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1', leaveRoutes);
+app.use('/api/v1', financeRoutes);
 
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to EIMS " });
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to EIMS ' });
 });
 
 // error handler

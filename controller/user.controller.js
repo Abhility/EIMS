@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require('../models/User');
 
 const allUsers = async (req, res, next) => {
   try {
@@ -12,7 +12,7 @@ const allUsers = async (req, res, next) => {
 };
 
 const userById = async (req, res, next) => {
-  console.log("id", req.params.userId);
+  console.log('id', req.params.userId);
   try {
     const user = await User.findById(req.params.userId);
     res.json(user);

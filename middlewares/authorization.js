@@ -1,4 +1,4 @@
-const { errorCodes, roles } = require("../constants");
+const { errorCodes, roles } = require('../constants');
 
 const isAdmin = (req, res, next) => {
   const role = req.user.role;
@@ -6,7 +6,7 @@ const isAdmin = (req, res, next) => {
   else
     res.status(403).json({
       errorCode: errorCodes.NOT_ADMIN,
-      message: "User is not an ADMIN",
+      message: 'User is not an ADMIN',
     });
 };
 
@@ -16,7 +16,7 @@ const isEmployee = (req, res, next) => {
   else
     res.status(403).json({
       errorCode: errorCodes.NOT_EMPLOYEE,
-      message: "User is not an EMPLOYEE",
+      message: 'User is not an EMPLOYEE',
     });
 };
 
@@ -26,7 +26,7 @@ const isEmployeeAuthorized = (req, res, next) => {
   else
     res.status(403).json({
       errorCode: errorCodes.NOT_AUTHORIZED,
-      message: "User is not an auhtorized for this operation",
+      message: 'User is not an auhtorized for this operation',
     });
 };
 

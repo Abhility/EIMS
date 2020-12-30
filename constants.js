@@ -9,7 +9,7 @@ module.exports = {
     LEAVE_ALREADY_PROCESSED: 3001,
   },
   roles: {
-    EMPLOYEE: "EMPLOYEE",
-    ADMIN: "ADMIN",
+    EMPLOYEE: 'EMPLOYEE',
+    ADMIN: 'ADMIN',
   },
 };

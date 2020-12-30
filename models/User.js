@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const UserSchema = mongoose.Schema(
   {
@@ -13,10 +13,10 @@ const UserSchema = mongoose.Schema(
     salary: { type: String, require: true },
     photoUrl: { type: String, require: true },
     leaveQuota: { type: Number, require: true },
-    finances: [{ type: mongoose.Schema.Types.ObjectId, ref: "finance" }],
-    leaves: [{ type: mongoose.Schema.Types.ObjectId, ref: "leave" }],
+    finances: [{ type: mongoose.Schema.Types.ObjectId, ref: 'finance' }],
+    leaves: [{ type: mongoose.Schema.Types.ObjectId, ref: 'leave' }],
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("user", UserSchema, "User");
+module.exports = mongoose.model('user', UserSchema, 'User');
