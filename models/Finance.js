@@ -9,4 +9,4 @@ const FinanceSchema = mongoose.Schema({
 },{timestamps: true});
 
 
-module.exports = mongoose.model('finance',FinanceSchema,'Finance);
+module.exports = mongoose.model('finance',FinanceSchema,'Finance');
