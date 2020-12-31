@@ -1,0 +1,22 @@
+{
+    "configurations": [
+    {
+        "address": "TCP/IP address of process to be debugged",
+        "localRoot": "${workspaceFolder}",
+        "name": "Attach to Remote",
+        "port": 9090,
+        "remoteRoot": "Absolute path to the remote directory containing the program",
+        "request": "attach",
+        "skipFiles": [
+            "<node_internals>/**"
+        ],
+        "type": "pwa-node"
+    },
+        {
+            "type": "pwa-chrome",
+            "name": "http://localhost:9090",
+            "request": "launch",
+            "url": "http://localhost:9090"
+        }
+    ]
+}
