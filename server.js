@@ -29,7 +29,6 @@ app.get('/',(req,res) => {
 // error handler
 app.use(function(err, req, res, next) {
     const status = res.statusCode || 500;
-    console.log("fatt gaya");
     res.json({ errorCode: status, message: err.message});
 });
 

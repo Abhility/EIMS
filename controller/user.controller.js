@@ -30,30 +30,29 @@ const userRegistration = async (req, res, next) => {
     const phonExistence = await User.findOne();
     if (emailExistence) res.status(409).json({ message: "Email already exists" });
     else if (phoneExistence)
-    res.status(409).json({ message: "Phone number already exists" });
+        res.status(409).json({ message: "Phone number already exists" });
     else {
-    var isRegister = false;
-    const newUser = {
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    role: req.body.role,
-    phone: req.body.phone,
-    address: req.body.address,
-    team: req.body.team,
-    title: req.body.title,
-    salary: req.body.salary,
-    photoUrl: req.body.photoUrl,
-    leaveQuota: req.body.leaveQuota,
-    };
-    await User.insertMany(newUser, function (err) {
-    if (err) throw err;
-    else {
-    res.status(200).json({message:"Registration successful"});
+        const newUser = {
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+            role: req.body.role,
+            phone: req.body.phone,
+            address: req.body.address,
+            team: req.body.team,
+            title: req.body.title,
+            salary: req.body.salary,
+            photoUrl: req.body.photoUrl,
+            leaveQuota: req.body.leaveQuota,
+        };
+        await User.insertMany(newUser, function (err) {
+            if (err) throw err;
+            else {
+                res.status(200).json({ message: "Registration successful" });
+            }
+        });
     }
-});
-    } 
 
-};
+}
 
-module.exports = { allUsers, userById,userRegistration}
+module.exports = { allUsers, userById, userRegistration }
