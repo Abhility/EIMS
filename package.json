@@ -4,7 +4,7 @@
   "description": "Employee Information Management System",
   "main": "server.js",
   "scripts": {
-    "start": "npm server",
+    "start": "node server",
     "dev": "nodemon server"
   },
   "repository": {
@@ -21,6 +21,7 @@
     "nodemon": "^2.0.6"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
