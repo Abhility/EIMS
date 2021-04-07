@@ -4,6 +4,7 @@ const User = require('../models/User');
 const allLeaves = async (req, res, next) => {
   try {
     const leaves = await Leave.find().populate('user');
+    console.log(leaves);
     res.json(leaves);
   } catch (err) {
     res.status(500);
@@ -73,8 +74,8 @@ const updateLeave = async (req, res, next) => {
     let leave = await Leave.findById(req.params.leaveId).populate('user');
     if (leave) {
       if (leave.isApproved != null) throw new Error('Leave already processed');
+      leave.isApproved = isApproved;
       if (isApproved) {
-        leave.isApproved = isApproved;
         await Leave.updateOne({ _id: leave._id }, leave);
       } else {
         const user = leave.user;
